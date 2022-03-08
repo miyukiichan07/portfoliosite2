@@ -476,15 +476,15 @@ input[class="button"] {
         width: auto;
     }
 
-    th {
+    .index_th {
         width: 100px;
         height: 300px;
     }
 
-    th .mask {
+    .index_th .mask {
         position:		absolute;	/* 絶対位置指定 */
-        top:			30px;
-        left:			18px;
+        top:			20%;
+        left:			20%;
         
     }
     .works_title {
