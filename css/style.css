@@ -1,0 +1,541 @@
+@charset "utf-8";
+/* ----------------------------------------------------------
+WEBフォント読み込み設定
+-----------------------------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+/* 
+
+/* html,body,a{
+    cursor: none;
+} */
+
+#cursor {
+    transform: translate(0, 0);
+    pointer-events: none;
+    position: fixed;
+    top: -4px;
+    left: -4px;
+    width: 20px;
+    height:20px;
+    /* background: rgba(0, 0, 0, 0.75); */
+	border: solid 1px #333;
+    border-radius: 50%;
+    z-index: 999;
+    transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
+}
+
+#cursor.hov_ {
+    top: -12px;
+    left: -12px;
+    width: 32px;
+    height: 32px;
+    background: rgba(250, 248, 248, 0.75);
+	border: none;
+}
+
+
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}
+
+
+/* 基本要素の指定 */
+body{
+    font-family: "ヒイラギ角ゴ ProN W3", "Meiryo" , sans-serif;
+    color: #333;
+    /* line-height: 1.75; */
+}
+
+.wrapper{
+    margin: 0 auto;
+}
+
+/* 各ブロックの指定 */
+header{
+    position: fixed;
+    top: 0;
+    /* 親要素にとりあえず書いておくことで、
+    子要素はabsoluteで親を基準に移動することができる */
+    width: 100%;
+    height: 0px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+    /* cursor: pointer; */
+}
+
+.title {
+    font-size: large;
+    font-weight: 100;
+    margin-top: 20px;
+    font-family: "ヒイラギ角ゴ ProN W3", "Meiryo" , sans-serif;
+    color: #707070;
+}
+
+.title a {
+    text-decoration: none;
+    color: #707070;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 180px;
+    margin-right: 20px;
+}
+.navigation {
+    position: fixed;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.navigation li a{
+    display: block;
+    padding:10px 30px;
+    text-decoration: none;
+    color: #333;
+}
+
+.navigation li{
+    margin-bottom:5px;
+    list-style: none;
+}
+
+/*==================================================
+　5-3-2 中心から外に線が伸びる（中央）
+===================================*/
+.navigation li a{
+    /*線の基点とするためrelativeを指定*/
+	position: relative;
+}
+
+.navigation li a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    top:50%;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 1px;
+    background: #666;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+.navigation li.current a::after,
+.navigation li a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+}
+
+.navigation_btn {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+}
+
+main{
+    padding: 0;
+    width: 960px;
+    margin: 5em auto;
+    /* background-color: wheat; */
+}
+
+/* works */
+
+.index_table {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.index_tr {
+    position: relative;
+    height: 200px;
+}
+
+.index_th {
+    max-width:			280px;
+	max-height:			100px;
+	overflow:		hidden;
+	margin:			10px 8px 10px 16px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgba(51, 51, 51, 0.884);
+	position:		relative;	/* 相対位置指定 */
+    background-color: rgb(250, 250, 250);
+    border: solid 1px #333;
+    z-index: 100;
+}
+
+.index_th .caption {
+	font-size:		100%;
+	text-align: 		center;
+	padding-top:		50px;
+	color:			#5565FC;
+}
+
+.caption a {
+    text-decoration: none;
+    z-index: 9999;
+}
+
+.index_th .mask {
+	width:			60%;
+	height:			60%;
+	position:		absolute;	/* 絶対位置指定 */
+	top:			40px;
+	left:			60px;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgb(220, 243, 118);
+    /* border: solid 1px #333; */
+	-webkit-transition:	all 0.2s ease;
+	transition:		all 0.2s ease;
+    z-index: 99999;
+}
+
+.index_th:hover .mask {
+	opacity:		1;	/* マスクを表示する */
+    z-index: 9999;
+}
+
+.works_title {
+    position: absolute;
+    z-index: 999;
+    top: 45%;
+    left: 40%;
+}
+
+.work_box {
+    position: absolute;
+    top: 0;
+    filter: grayscale();
+}
+/* about */
+
+.about_box {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    border: solid 1px #0e0b0f;
+    position: relative;
+    background-color: #fff;
+    z-index: 9999;
+}
+
+.about_title_box {
+    text-align: center;
+    max-height: 400px;
+    width: 40%;
+    /* margin: 20px; */
+    background-color: #FF9393;
+    border-radius: 8px;
+    background-image: url(../images/profile.png);
+    background-repeat: no-repeat;/* 画像をリピートしない */
+    background-size: cover;
+}
+
+.about_title {
+    margin-top: 100px;
+    font-size: 70px;
+    font-style: italic;
+    color: #F2ECEC;
+    font-family: "Trebuchet MS";
+    font-weight: 100;
+}
+
+.about_title span {
+    font-size: 25px;
+    color: #f3fae7;
+}
+
+.about_main_txt {
+    margin-left: 100px;
+    width: 60%;
+    height: 400px;
+
+}
+
+.about_sub_title {
+    margin-top: 10px;
+    text-align: left;
+    font-style: italic;
+    color: #333;
+    text-decoration: underline;
+}
+
+.about_txt {
+    margin-top: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: small;
+    font-weight: 800;
+}
+
+/* contact */
+
+.form_box {
+    width: 70%;
+    margin: 0 auto;
+    z-index: 100;
+    margin-top: 100px;
+    position: relative;
+    z-index: 9999;
+}
+
+label {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+input[class="form_in"] {
+    appearance: none;
+    border: none;
+    height: 50px;
+    width: 100%;
+    border: solid 1px #333;
+    display: block;
+}
+
+textarea {
+    border: none;
+    height: 100px;
+    width: 100%;
+    border:  solid 1px #333;
+}
+
+.btn_area {
+    text-align: center;
+}
+
+input[class="button"] {
+    background-color: #fff;
+    border: none;
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+    border: solid 1px #333;
+    /* vertical-align: top; */
+    display: block;
+}
+
+/* スクロールjQuery */
+
+.box{
+    /* color: #fff; */
+    padding: 25px;
+}
+
+/* maru  */
+
+.circlesWrapper {
+    background-color: #fff;
+    /* display: flex; */
+    height: 100%;
+    margin: auto;
+    position: relative;
+    width: 100%;
+    z-index: 100;
+}
+  
+.circle {
+    border-radius: 50%;
+    height: calc(150vh / 10);
+    position: absolute;
+    width: calc(150vh / 10);
+}
+  
+.circleHorizontal {
+    background-color: #F86EE9;
+    /* border: calc(50vh / 13 / 2) solid rgb(241, 122, 122); */
+}
+  
+.circleVertical {
+    background-color: #DAE3AA;
+    /* border: calc(100vh / 13 / 2) solid rgba(223, 248, 230, 0.979); */
+}
+  
+@keyframes horizontal {
+    from {
+      transform: translateX(0vw);
+}
+    to {
+      transform: translateX(70vw);
+    }
+}
+  
+@keyframes vertical {
+    from {
+      transform: translateY(0);
+}
+    to {
+      transform: translateY(100vh);
+}
+}
+  
+.circle1 {
+    animation: horizontal 10s ease-in-out infinite alternate both;
+    left: calc(100vh / 13 / -1);
+    top: calc(100vh / 13 * 0.5);
+}
+  
+.circle2 {
+    animation: horizontal 5.5s ease-in-out infinite alternate-reverse both;
+    left: calc(100vh / 13 / -1);
+    top: calc(100vh / 13 * 2.5);
+}
+  
+.circle3 {
+    animation: horizontal 6s ease-in-out infinite alternate both;
+    left: calc(100vh / 13 / -1);
+    top: calc(100vh / 13 * 4.5);
+}
+  
+.circle4 {
+    animation: horizontal 6.5s ease-in-out infinite alternate-reverse both;
+    left: calc(100vh / 13 / -1);
+    top: calc(100vh / 13 * 6.5);
+}
+  
+.circle5 {
+    animation: horizontal 7s ease-in-out infinite alternate both;
+    left: calc(100vh / 13 / -1);
+    top: calc(100vh / 13 * 8.5);
+    background-color: #5565FC;
+}
+  
+.circle6 {
+    animation: horizontal 7.5s ease-in-out infinite alternate-reverse both;
+    left: calc(100vh / 13 / -1);
+    top: calc(100vh / 13 * 10.5);
+}
+  
+.circle7 {
+    animation: vertical 6s ease-in-out infinite alternate both;
+    left: calc(100vw / 13 * 1);
+    top: calc(100vh / 13 / -1);
+}
+  
+.circle8 {
+    animation: vertical 6.5s ease-in-out infinite alternate-reverse both;
+    left: calc(100vw / 13 * 3);
+    top: calc(100vh / 13 / -1);
+}
+  
+.circle9 {
+    animation: vertical 7s ease-in-out infinite alternate both;
+    left: calc(100vw / 13 * 5);
+    top: calc(100vh / 13 / -1);
+    background-color: #5565FC;
+}
+  
+.circle10 {
+    animation: vertical 7.5s ease-in-out infinite alternate-reverse both;
+    left: calc(100vw / 13 * 7);
+    top: calc(100vh / 13 / -1);
+}
+  
+.circle11 {
+    animation: vertical 8s ease-in-out infinite alternate both;
+    left: calc(100vw / 13 * 9);
+    top: calc(100vh / 13 / -1);
+}
+  
+.circle12 {
+    animation: vertical 8.5s ease-in-out infinite alternate-reverse both;
+    left: calc(100vw / 13 * 9);
+    top: calc(100vh / 13 / -1);
+}
+  
+.cover {
+    content: "";
+    background-color: #55c500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: lighten;
+}
+
+@media only screen and (max-width: 480px) {
+    main {
+        width: 100%;
+    }
+    table {
+        width: auto;
+    }
+
+    th {
+        width: 100px;
+        height: 300px;
+    }
+
+    th .mask {
+        position:		absolute;	/* 絶対位置指定 */
+        top:			30px;
+        left:			18px;
+        
+    }
+    .works_title {
+        position: absolute;
+        z-index: 999;
+        top: 45%;
+        left: 40%;
+    }
+    
+    .work_box img {
+        height: 300px;
+    }
+
+    .about_title_box {
+        text-align: center;
+        max-height: 400px;
+        width: 40%;
+        /* margin: 20px; */
+        background-color: #FF9393;
+        border-radius: 8px;
+        background-image: url(../images/profile.png);
+        background-repeat: no-repeat;/* 画像をリピートしない */
+        background-size: auto;
+    }
+
+    .about_box {
+        position: relative;
+        z-index: 9999;
+    }
+    
+    .about_title_box {
+        max-height: 500px;
+    }
+
+    .about_main_txt {
+        height: auto;
+    }
+
+    .about_title {
+        font-size: x-large;
+        margin-bottom: 10px;
+    }
+
+    .about_main_txt {
+        margin-left: 10px;
+        font-size: small;
+        text-align: auto;
+    }
+
+    .about_txt {
+        font-size: small;
+        line-height: 100%;
+    }
+}
