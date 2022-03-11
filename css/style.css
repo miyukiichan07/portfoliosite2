@@ -282,6 +282,13 @@ main{
     font-weight: 800;
 }
 
+.youtube {
+    margin:  0 auto;
+    text-align: center;
+    margin-top: 100px;
+    max-width: 960px;
+}
+
 /* contact */
 
 .form_box {
