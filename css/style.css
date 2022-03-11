@@ -475,6 +475,10 @@ input[class="button"] {
     mix-blend-mode: lighten;
 }
 
+iframe {
+    width: 100%;
+}
+
 @media only screen and (max-width: 480px) {
     main {
         width: 100%;
@@ -544,5 +548,8 @@ input[class="button"] {
     .about_txt {
         font-size: small;
         line-height: 100%;
+    }
+    iframe {
+        width: auto;
     }
 }
